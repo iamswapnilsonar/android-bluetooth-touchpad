@@ -2,20 +2,23 @@
 
 ===Information===
 
-This project is part of my Bachelor Thesis. You could find it at 
+This project is part of my Bachelor Thesis. You could find it at (link is coming soon). I will direct you to it for more information whenever needed.
 
-== Android device: ==
+== 1. Android device: ==
 
   * Android version *2.1 and later*
-  * *ROOT*, See http://en.wikipedia.org/wiki/Rooting_(Android_OS)
-  * *Unmodified Bluetooth stack* (Some manufacturers modify the Bluetooth stack in Android, so the framework will not work there. Ex. HTC Desire has proven not to work!)
+  * *ROOT*, See http://en.wikipedia.org/wiki/Rooting_(Android_OS) 
+  * *Unmodified Bluetooth stack* Some manufacturers modify the Bluetooth stack in Android, so the framework will not work there. Ex. HTC Desire has proven not to work!
   
 The framework was successfully tested on *Google Nexus One*.
 
-== Host: ==
+== 2. Host: ==
 
   * *Computer running Linux OS.* The framework was tested on Ubuntu, but other Linux distributions should also work.
-  * Windows will not work! This is very unlikely to change.
+  * If running Ubuntu it is recommended you install *Blueman* - Bluetooth utility for Ubuntu with nice GUI. (_sudo apt-get install blueman_)
+  * Windows will not work! And this is very unlikely to change.
+
+==3. Very good Android development skills.==
   
 
 
