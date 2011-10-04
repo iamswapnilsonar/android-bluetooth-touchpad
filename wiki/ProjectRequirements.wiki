@@ -2,7 +2,7 @@
 
 ===Information===
 
-This project is part of my Bachelor Thesis. You could find it at (link is coming soon). I will direct you to it for more information whenever needed.
+This project is part of my Bachelor Thesis. You could find and download it [http://android-bluetooth-touchpad.googlecode.com/svn/trunk/%20android-bluetooth-touchpad/BTTouchpad/thesis/ here]. I will direct you to it whenever more information is needed.
 
 == 1. Android device: ==
 
@@ -14,11 +14,13 @@ The framework was successfully tested on *Google Nexus One*.
 
 == 2. Host: ==
 
-  * *Computer running Linux OS.* The framework was tested on Ubuntu, but other Linux distributions should also work.
+  * *Computer running Linux OS.* The framework was tested on Ubuntu, but other Linux distributions should also work. It is important they use the BlueZ Bluetooth Stack. 
   * If running Ubuntu it is recommended you install *Blueman* - Bluetooth utility for Ubuntu with nice GUI. (_sudo apt-get install blueman_)
-  * Windows will not work! And this is very unlikely to change.
+  * Windows will not work! And this is very unlikely to change. Check the [http://android-bluetooth-touchpad.googlecode.com/svn/trunk/%20android-bluetooth-touchpad/BTTouchpad/thesis/ Thesis], Section 5.7. 
 
-==3. Very good Android development skills.==
+==3. Skills:==
+  * Good Android development skills are required. This is not the place to start learning Android.
+  * Good understanding of the Bluetooth stack, HID and SDP is highly recommended. You could read chapter 2, 3 and 4 in the [http://android-bluetooth-touchpad.googlecode.com/svn/trunk/%20android-bluetooth-touchpad/BTTouchpad/thesis/ Thesis].
   
 
 
