@@ -17,8 +17,8 @@ Press the menu button -> Settings -> Wireless & networks -> Bluetooth Settings. 
 ===B) On Ubuntu===
 Install and open blueman. (sudo apt-get install blueman) Click on "Search". After the device is found right click on it and then "Pair". Confirm the pairing request on both phone and computer. Right click on the device again and then click on "Trust". Done.
 
-==3. Check out the SampleCode project==
-Check out the SampleCode project in Eclipse. SVN check out: http://android-bluetooth-touchpad.googlecode.com/svn/trunk/%20android-bluetooth-touchpad/SampleCode/
+==3. Check out the Sample Code project==
+Check out the Sample Code project in Eclipse. SVN check out: http://android-bluetooth-touchpad.googlecode.com/svn/trunk/%20android-bluetooth-touchpad/SampleCode/
 
 ==4. The Manifest==
 In the Manifest the following permissions are declared: <code language="xml">
@@ -97,4 +97,3 @@ public class SampleCodeActivity extends Activity implements OnClickListener, SDP
     }
 }
 </code>
-
