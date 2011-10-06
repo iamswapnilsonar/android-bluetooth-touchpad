@@ -32,7 +32,7 @@ The Framework code is in the package tum.betriebsysteme.kostadinov.btframework. 
 
 ==6. The Executable==
 
-The Linux executable, which is to be deployed and run from the console is placed in the /asset dir. Read chapter 5 in the [http://android-bluetooth-touchpad.googlecode.com/svn/trunk/%20android-bluetooth-touchpad/BTTouchpad/thesis/ thesis] to find out more.
+The Linux executable, which is to be deployed and run from the console is placed in the /asset dir. This operation is however handled by the SDP component in the framework. Read chapter 5 in the [http://android-bluetooth-touchpad.googlecode.com/svn/trunk/%20android-bluetooth-touchpad/BTTouchpad/thesis/ thesis] to find out more.
 
 ==7. UI==
 In main.xml we define very simple UI with three buttons: 
@@ -63,7 +63,7 @@ In main.xml we define very simple UI with three buttons:
 </LinearLayout>
 </code>
 
-With the first button we intent to add the new service record in the SDP registry. With the second the connection to the computer host on both the control and interruption channels would be established. With the third we send the message, which would be handled by the PC as standard keyboard input.
+With the first button we intent to add the new service record in the SDP registry. With the second the connection to the computer host on both the control and interruption channels would be established. With the third we would send the message, which would be handled by the PC as standard keyboard input.
 
 ==8. Implementation== 
 ===A) onCreate()===
@@ -99,3 +99,5 @@ public class SampleCodeActivity extends Activity implements OnClickListener, SDP
     }
 }
 </code>
+
+In the onCreate method the SDP component is initiated. It is reponsible for registering and deleting the service record from the SDP registry. The Threads for the control and interruption L2CAP channels are also initiated. We then bind a listener for the three UI-buttons.
