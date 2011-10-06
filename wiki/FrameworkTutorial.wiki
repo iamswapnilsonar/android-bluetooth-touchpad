@@ -4,15 +4,18 @@
 
 This project is part of my Bachelor Thesis: "Implementation of a Bluetooth touchpad based on Android OS" at the [http://www13.in.tum.de/startseite/ Chair of Operating Systems, TU Munich.] You could download it [http://android-bluetooth-touchpad.googlecode.com/svn/trunk/%20android-bluetooth-touchpad/BTTouchpad/thesis/ here]. I will direct you to it whenever more information is needed.
 
-=1. Requirements=
+==1. Requirements==
 It is very important to check the [http://code.google.com/p/android-bluetooth-touchpad/wiki/Requirements requirements section]. For this tutorial I will use Ubuntu on the computer host side and a rooted Nexus One running Android, version 2.3.6. 
 
-=2. Pairing=
+==2. Pairing==
 
 You have to pair the phone and the host. Then you have to mark the phone as trusted on the host side.
 
-==A) On Nexus == 
+===A) On Nexus ===
 Press the menu button -> Settings -> Wireless & networks -> Bluetooth Settings. Turn on Bluetooth and make it discoverable. (It lasts couple a minutes.) 
 
-==B) On Ubuntu==
+===B) On Ubuntu===
 Install and open blueman. (sudo apt-get install blueman) Click on "Search". After the device is found right click on it and then "Pair". Confirm the pairing request on both phone and computer. Right click on the device again and then click on "Trust". Done.
+
+==3. Create the Android Project==
+Create Android Project in Eclipse by using API 2.1 or later. 
