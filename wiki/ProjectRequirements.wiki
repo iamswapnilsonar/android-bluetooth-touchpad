@@ -20,7 +20,7 @@ The framework was successfully tested on *Google Nexus One*.
 
 ==3. Skills and Knowldge:==
   * Good Android development skills are required. This is not the place to start learning Android.
-  * Good understanding of the Bluetooth stack, HID and SDP is highly recommended. You could read chapter 2, 3 and 4 in the [http://android-bluetooth-touchpad.googlecode.com/svn/trunk/%20android-bluetooth-touchpad/BTTouchpad/thesis/ THESIS].
+  * Good understanding of the Bluetooth stack, HID and SDP is highly recommended. You could read chapter 2, 3 and 4 in the [http://android-bluetooth-touchpad.googlecode.com/svn/trunk/%20android-bluetooth-touchpad/BTTouchpad/thesis/ thesis].
   * Understanding the concept behind the framework is not required in order to utilize its functionality. However, it would be required if you are willing to modify or extend it. You could read chapters 3, 4 and 5 of the [http://android-bluetooth-touchpad.googlecode.com/svn/trunk/%20android-bluetooth-touchpad/BTTouchpad/thesis/ thesis].
 
   
