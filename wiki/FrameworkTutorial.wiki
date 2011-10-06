@@ -65,8 +65,7 @@ In main.xml we define very simple UI with three buttons:
 
 With the first button we intent to add the new service record in the SDP registry. With the second the connection to the computer host on both the control and interruption channels would be established. With the third we would send the message, which would be handled by the PC as standard keyboard input.
 
-==8. Implementation== 
-===A) onCreate()===
+===8. onCreate()===
 <code language="java">
 public class SampleCodeActivity extends Activity implements OnClickListener, SDPStateListener, EventListener {
   
@@ -102,7 +101,7 @@ public class SampleCodeActivity extends Activity implements OnClickListener, SDP
 
 In the onCreate method the SDP component is initiated. It is reponsible for registering and deleting the service record from the SDP registry. The Threads for the control and interruption L2CAP channels are also initiated. We then bind a listener for the three UI-buttons.
 
-==9. Service registration==
+===9. Service registration===
 
 <code language="java">
 	@Override
@@ -122,8 +121,9 @@ In the onCreate method the SDP component is initiated. It is reponsible for regi
 			view.setEnabled(false);
 		}
 </code>
-When the register button is pressed, the SDP component is attempting to add the new service record in the registry of the SDP module.
-The call is asynchronous. The result is delivered through a listener and the onRegisterComplete method is called.
+
+When the register button is pressed, the SDP component is attempting to add the new service record in the registry of the SDP module. You could choose between one of two available service records - mouse + keyboard or pointer + keyboard. The call is asynchronous. The result is delivered through a listener and the onRegisterComplete method is called.
+
 <code language="java">
 
 	@Override
@@ -143,3 +143,108 @@ The call is asynchronous. The result is delivered through a listener and the onR
 		
 	}
 </code>
+
+If the result code is not positive you could check its semantic by comparing it with the error codes in the SDP component. It is possible that your development phone could not add the new service record in the registry, because its Bluetooth stack has been modified by the manufacturer. This is for example the case with HTC Desire. Possible solution is to find a way to flash a clean Android ROM on the device or simply try with one of the Nexus devices.
+
+===10. Refresh the service on the host side (IMPORTANT)===
+
+Now that the service is in the phone's SDP registry, the host side must be notified about this change. Open blueman and right click on the Android device in the list of devices. Press the "Refresh Services" button! (You might press it several times, sometimes it didn't work with one press when I was testing.) The host is aware there is an input service available and has opened the L2CAP ServerSocket. You are all se to connect.
+
+===11. Connecting===
+After the computer host side is aware of the new service, one could press the connect button and initiate the connection on both the control and interruption channels. However, since this is only a demo you should hard-code the Bluetooth address of the computer host you are connecting to. To check this address on your ubuntu computer, just type hciconfig in the console. 
+<code language="java"> 
+else if(view.getId() == R.id.connect_to_device_button){
+			if(!registered){
+				toastLog("Service hasn't been registered. Connection will fail.");
+				return;
+			}
+			/*	ATTENTION !!!
+			 *  MAKE SHURE TO PAIR YOUR PHONE WITH THE LINUX COMPUTER 
+			 *  AND MARK THE PHONE AS TRUSTED !!!
+			 *  
+			 *  ENTER YOUR COMPUTER'S BLUETOOTH ADDRESS HERE !!!
+			 *  TO FIND IT OUT, TYPE "hciconfig" IN THE LINUX CONSOLE.
+			 */
+			String address = "00:09:DD:50:86:5B";
+			
+			BluetoothDevice device = BluetoothAdapter.getDefaultAdapter().getRemoteDevice(address);
+			
+			l2capSocket1.connect(device, 0x11);
+			
+			l2capSocket2.connect(device, 0x13);
+			
+			view.setEnabled(false);
+		}   
+</code>
+
+The connect method is also asynchronous and the result is delivered through a listener. One of two methods is called. If the connection attempt fails: 
+
+<code language="java">
+	@Override
+	public void onSocketConnectionFailed(int port) {
+		toastLog("The connection could not be established. Port: "+port);
+		
+	}
+</code>
+
+Or if it succeeds: 
+
+<code language="java">
+@Override
+	public void onSocketConnected(int port) {
+		
+		
+		toastLog("Connection on "+port+" established.");
+		
+	}
+</code>
+
+If the connection is established on both channels you are set to send mouse or keyboard reports. Or if you added the other service record to the registry, you have to send pointer or keyboard reports. However, you could be also interested in listening for incoming messages from the computer host:
+
+<code language="java">
+	@Override
+	public void onBytesRead(int port, int bytesRead, byte[] buffer) {
+		
+		Log.v(this.getClass().getSimpleName(), "Some bytes are read !!!");
+		
+	}
+</code>
+
+===12. Sending input===
+
+Sending the input is made very easy.
+
+<code language="java">
+else if(view.getId() == R.id.send_message_button){
+			
+			if(l2capSocket1.isConnected() && l2capSocket2.isConnected()){
+				
+				HIDReportKeyboard keyboardEvent = new HIDReportKeyboard();
+				
+				for(int i=0;i<hello_message.length();i++){
+					int sign = hello_message.charAt(i);
+					keyboardEvent.setSingleKeycode(sign-93);
+					l2capSocket1.write(keyboardEvent.getReportPayload());
+					keyboardEvent.setSingleKeycode(HIDReportKeyboard.EMPTY_KEYCODE);
+					l2capSocket1.write(keyboardEvent.getReportPayload());
+				}
+</code>
+
+To send a single letter you create a HIDReportKeyboard object and set the keycode. Then you could send the bytes returned by the getPayload method. Similarly, you could send mouse reports or if the other record is in the registry, pointer reports. Check the documentation of the report package for more information. If everything is successful your PC should have received "helloandroidbluetooth" as standard keyboard input.
+
+===12. Termination== 
+To terminate the service you should safely disconnect from the computer host and remove the service record from the SDP registry - the service would not be available:
+
+<code language="java">
+	@Override
+	public void onPause(){
+		super.onPause();
+		l2capSocket1.cancel();
+		l2capSocket2.cancel();
+		sdpRegister.unregisterHID();
+		this.finish();
+	}
+</code>
+
+Once you have finished this tutorial, you might take a look at the Bluetooth Touchpad Application. It realizes touchpad, keyboard, joystick and other use cases. 
+
