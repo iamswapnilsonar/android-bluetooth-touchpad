@@ -23,3 +23,5 @@ SVN check out: http://android-bluetooth-touchpad.googlecode.com/svn/trunk/%20and
 ==3. Sample Code==
 
 The sample code project is accompanying the framework tutorial, which could be also found in the wiki. It is the minimum effort required to implement the Bluetooth HID Framework and run a small demo. 
+
+SVN check out: http://android-bluetooth-touchpad.googlecode.com/svn/trunk/%20android-bluetooth-touchpad/SampleCode/
