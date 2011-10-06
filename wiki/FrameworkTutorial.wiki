@@ -101,3 +101,45 @@ public class SampleCodeActivity extends Activity implements OnClickListener, SDP
 </code>
 
 In the onCreate method the SDP component is initiated. It is reponsible for registering and deleting the service record from the SDP registry. The Threads for the control and interruption L2CAP channels are also initiated. We then bind a listener for the three UI-buttons.
+
+==9. Service registration==
+
+<code language="java">
+	@Override
+	public void onClick(View view) {
+		
+		if(view.getId() == R.id.add_service_button){
+			
+			if(registered){
+				toastLog("Service is already registered.");
+				return;
+			}
+			
+			// For keyboard and regular mouse
+			sdpRegister.registerHID(SDPRegister.SDP_CONFIG_MOUSE_RELATIVE);
+			// or for keyboard and pointer
+			// sdpRegister.registerHID(SDPRegister.SDP_CONFIG_MOUSE_ABSOLUTE);
+			view.setEnabled(false);
+		}
+</code>
+When the register button is pressed, the SDP component is attempting to add the new service record in the registry of the SDP module.
+The call is asynchronous. The result is delivered through a listener and the onRegisterComplete method is called.
+<code language="java">
+
+	@Override
+	public void onRegisterComplete(int code) {
+		
+		if(SDPRegister.isSuccess(code)){
+		
+			toastLog( "The new service record has been registered successfuly!");
+			
+			registered = true;
+		
+		}else{
+			
+			toastLog("The Registration failed on your phone. Try with Nexus One.");
+			
+		}
+		
+	}
+</code>
