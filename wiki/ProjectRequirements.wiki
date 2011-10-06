@@ -16,7 +16,7 @@ The framework was successfully tested on *Google Nexus One*.
 
   * *Computer running Linux OS.* The framework was tested on Ubuntu, but other Linux distributions should also work. It is important they use the BlueZ Bluetooth Stack. 
   * If running Ubuntu it is recommended you install *Blueman* - Bluetooth utility for Ubuntu with nice GUI. (_sudo apt-get install blueman_)
-  * Windows will not work! And this is very unlikely to change. Check the [http://android-bluetooth-touchpad.googlecode.com/svn/trunk/%20android-bluetooth-touchpad/BTTouchpad/thesis/ THESIS], section 5.7. 
+  * Windows will not work! And this is very unlikely to change. Check the [http://android-bluetooth-touchpad.googlecode.com/svn/trunk/%20android-bluetooth-touchpad/BTTouchpad/thesis/ thesis], section 5.7. 
 
 ==3. Skills and Knowldge:==
   * Good Android development skills are required. This is not the place to start learning Android.
