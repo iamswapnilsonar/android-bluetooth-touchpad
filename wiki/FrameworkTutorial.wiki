@@ -63,6 +63,8 @@ In main.xml we define very simple UI with three buttons:
 </LinearLayout>
 </code>
 
+With the first button we intent to add the new service record in the SDP registry. With the second the connection to the computer host on both the control and interruption channels would be established. With the third we send the message, which would be handled by the PC as standard keyboard input.
+
 ==8. Implementation== 
 ===A) onCreate()===
 <code language="java">
